@@ -1,5 +1,6 @@
 package com.ipartek;
 
+import java.io.Console;
 import java.io.IOException;
 import java.sql.Connection;
 import java.util.List;
@@ -37,7 +38,10 @@ public class formularioCrearUsuario extends HttpServlet implements DAO_Constante
 		//si ya hay un usuario logeado y guardado en sesion:
 		if(session.getAttribute("usuario_name") == null) {
 		
-
+			System.out.println("el usuario en session " + session.getAttribute("usuario_name"));;
+			
+		
+			
    	  ruta = VISTA_CREARUSUARIOFORMULARIO;
 		}
 		//si no hay un usuario logeado en sesion no haremos nada e ira a la vista inicio	

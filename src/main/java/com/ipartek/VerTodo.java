@@ -69,6 +69,7 @@ public class VerTodo extends HttpServlet  implements DAO_Constantes{
        db.desconectar(con);
        
        // paso 6 mochila
+       
    		request.setAttribute("atr_lista_canciones", todasCancionesRs);	
    		request.setAttribute("atr_lista_canciones_favs", todasCancionesFavsRs);	
 

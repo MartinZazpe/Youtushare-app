@@ -35,6 +35,16 @@ public class crearUsuario extends HttpServlet implements DAO_Constantes {
 		
 		String ruta = VISTA_INICIO;
 		
+	
+		HttpSession session = request.getSession();
+
+		//si NO hay un usuario logeado y guardado en sesion:
+		if(session.getAttribute("usuario_name") == null
+				&& 
+				session.getAttribute("usuario_rol") == null 
+				) {
+			
+		
 		// 1 y 2 recibir y chequear
 		String userUsername = "";
 		String userPassword = "";
@@ -115,9 +125,22 @@ public class crearUsuario extends HttpServlet implements DAO_Constantes {
 			    ruta=VISTA_CREARUSUARIOFORMULARIO;
 		    	System.out.println("Error creating user: " + fieldErrors );
 	    }
-			request.getRequestDispatcher(ruta).forward(request, response);
-	}
 
+	} 
+		
+else {			
+			DB_Helper db= new DB_Helper();
+			Connection con= db.conectar();
+			   List<V_Cancion> todasCancionesRs = db.obtenerTodasCanciones(con);
+				db.desconectar(con);
+
+		   		request.setAttribute("atr_lista_canciones", todasCancionesRs);
+				
+			 ruta = VISTA_INDEX;
+				
+}
+		request.getRequestDispatcher(ruta).forward(request, response);
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

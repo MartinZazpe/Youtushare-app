@@ -41,12 +41,15 @@ public class Login extends HttpServlet implements DAO_Constantes {
 		//intentos de login
 		int intentos=0;
 		
-		String ruta = VISTA_INICIO;
+		String ruta = "error404.jsp";
 		
 		// 1 y 2 recibir y chequear
 		String userUsername = "";
 		String userPassword = "";
 		
+		HttpSession session = request.getSession();
+		if(session.getAttribute("usuario_name") == null) {
+
 		
 		// check user
 		if (request.getParameter("user") != null) {
@@ -63,8 +66,6 @@ public class Login extends HttpServlet implements DAO_Constantes {
 			error = true;
 			fieldErrors += "password can't be received by servlet.";
 		}
-		
-	
 		
 
 		if(error == false && fieldErrors == "") {
@@ -84,9 +85,7 @@ public class Login extends HttpServlet implements DAO_Constantes {
 		
 		System.out.println(loginRs + " this is the login result");
 		
-		 //Guardamos el objeto de sesion con sus metodos
-			HttpSession session = request.getSession();
-			
+		
 			//intentos de login
 			if(session.getAttribute("s_intentos")!= null || loginRs.isEmpty()) {
 				//aqui entra cuando no esta creado
@@ -121,25 +120,36 @@ public class Login extends HttpServlet implements DAO_Constantes {
 		ruta = VISTA_INICIO;
 	}
 } 
+    
+		  
 else {
 	System.out.println("there was an error with db result. Users found are none or too many:  " + loginRs);
     ruta = VISTA_INICIO;
 }
 		} 
 
-
 		//redirección final
+		}else {
+			
+			DB_Helper db= new DB_Helper();
+			Connection con= db.conectar();
+			   List<V_Cancion> todasCancionesRs = db.obtenerTodasCanciones(con);
+				db.desconectar(con);
+
+		   		request.setAttribute("atr_lista_canciones", todasCancionesRs);
+			
+		
+			 ruta = VISTA_INDEX;
+		}
+		
+	
 		
 		if(intentos <= 100) {
 			request.getRequestDispatcher(ruta).forward(request, response);
 		} else {
 			response.sendRedirect("https://www.google.es/");
 		}
-		
-		
-		
-		
-		
+
 	}
 
 	

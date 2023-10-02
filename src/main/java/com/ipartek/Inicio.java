@@ -28,11 +28,10 @@ public class Inicio extends HttpServlet implements DAO_Constantes{
         // TODO Auto-generated constructor stub
     }
 
-	
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String ruta = VISTA_INICIO;
+		String ruta = VISTA_INDEX;
 
 		
 		HttpSession session = request.getSession();
@@ -71,7 +70,7 @@ public class Inicio extends HttpServlet implements DAO_Constantes{
 		    	       // paso 6 mochila
 		    	   		request.setAttribute("atr_lista_canciones", todasCancionesRs);	
 		    	   		request.setAttribute("atr_lista_canciones_favs", todasCancionesFavsRs);	
-			  	   	    ruta = VISTA_INDEX;
+		    	   	    ruta = VISTA_INDEX;
 
 		    	}
 		    	   else {
@@ -83,8 +82,9 @@ public class Inicio extends HttpServlet implements DAO_Constantes{
 		    }  else {
 		    	System.out.println("Could not find an attribute for id on session. ");
 		    }
+		} else {
+		    ruta = VISTA_INDEX;
 		}
-		
 		
 		//si no hay un usuario logeado en sesion no haremos nada e ira a la vista inicio	
 		// paso 7

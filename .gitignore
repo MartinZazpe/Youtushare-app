@@ -2,25 +2,9 @@
 
 
 config.properties
-
-# Compiled class files
-*.class
-
-# Log files
-*.log
-
-# IntelliJ IDEA files
-.idea/
-
-# Eclipse files
 .classpath
 .project
 .settings/
-
-# Maven
 target/
-
-# User-specific files
-*.iml
-*.ipr
-*.iws
+bin/
+build/
