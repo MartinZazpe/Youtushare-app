@@ -1,0 +1,131 @@
+@charset "UTF-8";
+
+*{
+	box-sizing: border-box;
+}
+
+
+:root{
+	--greenblue:  rgb(62, 186, 193);
+}
+
+
+header{
+	width:100%;
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-bottom: 3px double black;
+	height:250px;
+	background-color: black;
+}
+
+
+
+#title{
+	   font-size: 72px;
+	     background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+#title-span{
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+#header-nav{
+	width:100%;
+	display:flex;
+	justify-content: space-evenly;
+	background-color: #373131;
+}
+
+#header-nav form{
+	display:Flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header-nav-element{
+	text-decoration: none;
+	padding:6px;
+	color: var(--greenblue)
+}
+
+.header-nav-element:hover{
+	text-decoration: none;
+	transform: scale(1.1);
+}
+
+
+
+
+
+
+#search-user-details-sections{
+	height:140px;
+		padding-top:10px ; 
+		width:100%;
+}
+
+
+#search-canciones-form div{
+	position: relative;
+}
+
+#search-canciones-form div input{
+	  padding: 5px 30px 5px 10px;
+}
+
+#search-canciones-form div button{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  position: absolute;
+  right: 0;
+  top:0;
+  height:100%;
+ /* padding: 18px 20px; */
+  z-index: 2;
+}
+
+
+#search-canciones-form div button i{
+	color:gray;
+}
+
+
+#search-canciones-form div input:focus + button i{
+ color: rgba(253,187,45,0.8) ;
+}
+
+#search-bar-section
+{
+	height:max-content;
+	display:flex;
+	justify-content: center;
+}
+
+#user-details-section{
+	height:max-content;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

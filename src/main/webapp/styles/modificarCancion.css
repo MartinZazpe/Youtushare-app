@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+
+#section-todas-canciones{
+	width:100%;
+}
+
+#todas-canciones-contenedor{
+	display:flex;
+	justify-content: center;
+}
+
+.cancion-contenedor{
+	max-width:600px;
+	width:500px;
+}

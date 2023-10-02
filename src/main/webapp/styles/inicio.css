@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+main{
+	padding-top:100px ;
+	display:Flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	height:max-content;
+	width:100%;
+}
+
+
+.button{
+	margin-top:10px;
+	width:200px;
+}
+
+#welcome-message a,
+#welcome-message a:hover{
+	color:blue;
+	cursor: pointer;
+}
+
+
+.login{
+color:darkgoldenrod;	
+}
+
+
+.support-link{
+	display: inline;
+}
+
+.user-pending-approval{
+	color:green;
+}
+
+.user-banned{
+	color:red;
+	display:inline;
+}
+
+.user-created{
+		color:green;
+}
+
+
+#user-details-section{
+	width:100%;
+	display:Flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+#user-details{
+	display:Flex;
+	flex-direction: column;
+	align-items: center;
+	padding:10px;
+}
+
+#user-details p{
+	margin:0;
+	display: inline;
+}
+
+#user-details {
+	color:white;
+}

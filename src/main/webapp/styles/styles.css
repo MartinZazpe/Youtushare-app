@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+body{
+	display:Flex;
+	flex-direction: column;
+	min-height: 100vh;
+	height:100%;
+	justify-content: space-between;	
+}
+
+
+
+.form-error{
+	color:red;
+}

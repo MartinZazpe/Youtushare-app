@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+main{
+	padding-top:20px ;
+	display:Flex;
+	flex-flow: column;
+	align-items: center;
+	height:100%;
+}
+
+
+
+#user-details-section{
+	width:100%;
+	display:Flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+#user-details{
+	display:Flex;
+	flex-direction: column;
+	align-items: center;
+	padding:10px;
+}
+
+#user-details p{
+	margin:0;
+	display: inline;
+}
+
+#user-details div:nth-child(1){
+	color:white;
+}
+
+#section-todas-canciones{
+	width:100%;
+}
+
+#section-agregar-cancion{
+	width:100%;
+	padding:50px;
+}
+
+#section-buscar-canciones-usuario{
+	width:100%;
+	display:flex;
+	justify-content: center;
+}
+
+
+#todas-canciones-contenedor{
+	width:100%;
+ 	display:grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, max-content));
+}
+
+#titulo-buscador{
+	display:Flex;
+	justify-content: space-evenly;
+}
+
+#titulo-buscador form{
+	display:Flex;
+}
+
+.cancion-contenedor{
+	border:1px solid cyan;
+	border-radius: 6px;
+	display:flex;
+	flex-flow: column;
+	justify-content: space-between;
+}
+
+
+.cancion-contenedor{
+max-width: 300px;	
+}
+
+#genero-form-container{
+padding:20px 0px;	
+}
+
+.cancion-footer{
+	width:100%;
+	display:flex;
+	justify-content: space-between;
+}
+
+.log-out-button{
+display: block;
+}
+
+.sin-canciones-error{
+	text-align: center;
+}
+
+
+@media(min-width:768px){
+	
+	
+	main{
+	flex-flow: row;
+}
+
+	
+	#section-todas-canciones{
+	width:55%;
+}
+
+#section-agregar-cancion{
+	width:35%;
+	padding:50px;
+}
+}
+
+
+
+
+
