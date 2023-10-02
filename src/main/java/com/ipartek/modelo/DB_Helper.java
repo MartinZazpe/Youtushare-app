@@ -2,6 +2,8 @@ package com.ipartek.modelo;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -11,6 +13,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,14 +29,32 @@ import com.google.gson.Gson;
 
 
 public class DB_Helper implements DAO_Constantes{
-
+	
+	
+	
 	
 	public Connection conectar() {
+		
+		
+		Properties prop = new Properties();
+		InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+
+		try {
+		    prop.load(input);
+		} catch (IOException e) {
+		    e.printStackTrace(); // Handle the exception in an appropriate way (logging, throwing a custom exception, etc.)
+		}
+
+		String USER = prop.getProperty("db.username");
+		String PASSWORD = prop.getProperty("db.password");	
+		String CONNECTI = prop.getProperty("db.connection");
+		String DRIVR = prop.getProperty("db.driver");
+		
 		Connection con = null;
 
 		try {
-			Class.forName(DRIVER);
-			con = DriverManager.getConnection(CONEXION, USUARIO, PASS);
+			Class.forName(DRIVR);
+			con = DriverManager.getConnection(CONNECTI, USER, PASSWORD);
 			System.out.println("BASE DE DATOS CONECTADA");
 		} catch (ClassNotFoundException e) {
 			System.out.println("NO SE ENCONTRO EL DRIVER");

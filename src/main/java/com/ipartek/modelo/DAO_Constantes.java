@@ -1,8 +1,9 @@
 package com.ipartek.modelo;
 
+
 public interface DAO_Constantes {
 
-	
+
 	String DRIVER = "com.mysql.jdbc.Driver";
 	String CONEXION = "jdbc:mysql://localhost:3306/canciones_youtube";
 	String USUARIO = "root";
