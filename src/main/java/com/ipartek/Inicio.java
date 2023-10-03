@@ -37,9 +37,7 @@ public class Inicio extends HttpServlet implements DAO_Constantes{
 		HttpSession session = request.getSession();
 
 		//si ya hay un usuario logeado y guardado en sesion:
-		if(session.getAttribute("usuario_name") != null && 
-				session.getAttribute("usuario_rol") != null &&
-				session.getAttribute("usuario_rol").equals("user")
+		if(session.getAttribute("usuario_name") != null 
 				) {
 			
 			//ejecutar lo necesario para poder enviar en la mochila
@@ -83,7 +81,7 @@ public class Inicio extends HttpServlet implements DAO_Constantes{
 		    	System.out.println("Could not find an attribute for id on session. ");
 		    }
 		} else {
-		    ruta = VISTA_INDEX;
+		    ruta = VISTA_INICIO;
 		}
 		
 		//si no hay un usuario logeado en sesion no haremos nada e ira a la vista inicio	

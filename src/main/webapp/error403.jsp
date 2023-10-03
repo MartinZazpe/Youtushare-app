@@ -16,7 +16,7 @@
     <h1>403 - Forbidden</h1>
  
     <p>Access to this resource is forbidden.</p>
-    <a href="Login">back to main page</a>
+    <a href="Inicio">back to main page</a>
 </div>
 
 </div>

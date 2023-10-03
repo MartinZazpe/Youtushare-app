@@ -17,7 +17,7 @@
     <h1>404 - Internal Server Error</h1>
  
     <p>An internal server error occurred.</p>
-    <a href="Login">back to main page</a>
+    <a href="Inicio">back to main page</a>
 </div>
 
 </div>

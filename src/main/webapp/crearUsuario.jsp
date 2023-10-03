@@ -32,7 +32,7 @@
 <section id="section-login">
 
 <h3 id="welcome-message">Welcome. Create a user and join our family.</h3>
-<p>Return to <a href="Login">login</a></p>
+<p>Return to <a href="Inicio">login</a></p>
 
 
 

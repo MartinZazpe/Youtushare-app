@@ -20,6 +20,7 @@ public interface DAO_Constantes {
     String VISTA_BUSQUEDAGENERAL = "busquedaGeneral.jsp";
     String VISTA_MODIFICARCANCION = "modificarCancion.jsp";
     String VISTA_FAVORITOS = "favoritos.jsp";
+    String VISTA_ABOUT_WEBSITE = "about-website.jsp";
 
 	
 	//db vista usuario

@@ -21,7 +21,7 @@
 
 </nav>
 
-<em><a class="about-this-project-link" href="AboutThisProject">About this proyect/Sobre este proyecto</a></em>
+<em><a class="about-this-project-link" href="aboutWebsite">About this proyect/Sobre este proyecto</a></em>
 <p id="copyright"> ©2023 <a href="http://www.martinzazpe.com" target="_blank">Martin Zazpe</a>. All rights reserved. </p>
 
 
