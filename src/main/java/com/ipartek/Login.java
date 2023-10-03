@@ -24,133 +24,103 @@ import com.ipartek.modelo.dto.V_Usuario;
 
 @WebServlet("/Login")
 public class Login extends HttpServlet implements DAO_Constantes {
-	private static final long serialVersionUID = 1L;
-       
+    private static final long serialVersionUID = 1L;
 
     public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
-    
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		boolean error = false;
-		String fieldErrors = "";
-		
-		//intentos de login
-		int intentos=0;
-		
-		String ruta = "error404.jsp";
-		
-		// 1 y 2 recibir y chequear
-		String userUsername = "";
-		String userPassword = "";
-		
-		HttpSession session = request.getSession();
-		if(session.getAttribute("usuario_name") == null) {
+        String ruta = VISTA_INICIO; // Change the default route to VISTA_INICIO
 
-		
-		// check user
-		if (request.getParameter("user") != null) {
-			userUsername = request.getParameter("user").trim();
-		} else {
-			error = true;
-			fieldErrors = "user can't be received by servlet.";
-		}
-		
-		//check password
-		if(request.getParameter("password") != null) {
-			userPassword = request.getParameter("password");
-		} else {
-			error = true;
-			fieldErrors += "password can't be received by servlet.";
-		}
-		
+        // 1 y 2 recibir y chequear
+        String userUsername = request.getParameter("user");
+        String userPassword = request.getParameter("password");
 
-		if(error == false && fieldErrors == "") {
-		
-	        // 1 create SP, get DTOs we receive.
+       
+        
+        
+        HttpSession session = request.getSession();
+        
+        
 
-				// 2 layout data to DTOs
+        // intentos de login
+        int intentos = session.getAttribute("s_intentos") != null ? (int) session.getAttribute("s_intentos") : 0;
 
-				// 3 connect to database
-		DB_Helper db= new DB_Helper();
-		Connection con= db.conectar();
+        if (session.getAttribute("usuario_name") == null || session.getAttribute("usuario_name").equals("")) {
 
-				// 3 (execute method/s stored in dbhelper)
-		List<V_Usuario> loginRs  = db.checkLogin(con, userUsername, userPassword);
-		List<V_Cancion> todasCancionesRs = db.obtenerTodasCanciones(con);
-		
-		
-		System.out.println(loginRs + " this is the login result");
-		
-		
-			//intentos de login
-			if(session.getAttribute("s_intentos")!= null || loginRs.isEmpty()) {
-				//aqui entra cuando no esta creado
-				intentos=(int)session.getAttribute("s_intentos")+1;
-				session.setAttribute("s_intentos", intentos);
-			} else {
-				session.setAttribute("s_intentos", 1);
-			}
-		
+            if (userUsername != null && !userUsername.trim().isEmpty() && userPassword != null) {
 
-		// paso 5 desconectar
-		db.desconectar(con);
+                // 1 create SP, get DTOs we receive.
+                // 2 layout data to DTOs
+                // 3 connect to database
+                DB_Helper db = new DB_Helper();
+                Connection con = db.conectar();
 
-        // paso 6 mochila
-		request.setAttribute("atr_lista_canciones", todasCancionesRs);	
+                // 3 (execute method/s stored in dbhelper)
+                List<V_Usuario> loginRs = db.checkLogin(con, userUsername, userPassword);
+                List<V_Cancion> todasCancionesRs = db.obtenerTodasCanciones(con);
+                
+                
+                // paso 5 desconectar
+                db.desconectar(con);
+                
+                
+                
+                System.out.println("Size of todasCancionesRs: " + todasCancionesRs.size());
+                request.setAttribute("atr_lista_canciones", todasCancionesRs);
 
-			  // paso 7 redirection & session
-    if(loginRs.size() == 1) {
+              
 
-//guardar el usuario en sesión
-	V_Usuario[] loginRsToArray = loginRs.toArray(new V_Usuario[0]);
-	session.setAttribute("usuario_id" , loginRsToArray[0].getId());
-	session.setAttribute("usuario_name", loginRsToArray[0].getUsername());
-	session.setAttribute("usuario_rol", loginRsToArray[0].getUser_rol());
+                // Si el usuario no es nulo y es 1
+                if (loginRs != null && loginRs.size() == 1) {
+                	
+                    // guardar el usuario en sesión
+                    V_Usuario[] loginRsToArray = loginRs.toArray(new V_Usuario[0]);
+                    session.setAttribute("usuario_id", loginRsToArray[0].getId());
+                    session.setAttribute("usuario_name", loginRsToArray[0].getUsername());
+                    session.setAttribute("usuario_rol", loginRsToArray[0].getUser_rol());
 
-	session.setAttribute("s_intentos", null);
-	
-	if(session.getAttribute("usuario_rol").equals("user") || session.getAttribute("usuario_rol").equals("admin") ) {
-		ruta = VISTA_INDEX;
-	}
-	else {
-		ruta = VISTA_INICIO;
-	}
-} 
-    
-		  
-else {
-	System.out.println("there was an error with db result. Users found are none or too many:  " + loginRs);
-    ruta = VISTA_INICIO;
-}
-		} 
+                    
+                    session.setAttribute("s_intentos", 0);
 
-		//redirección final
-		}else {
-			
-			DB_Helper db= new DB_Helper();
-			Connection con= db.conectar();
-			   List<V_Cancion> todasCancionesRs = db.obtenerTodasCanciones(con);
-				db.desconectar(con);
+                    if (session.getAttribute("usuario_rol").equals("user") || session.getAttribute("usuario_rol").equals("admin")) {
 
-		   		request.setAttribute("atr_lista_canciones", todasCancionesRs);
-			
-		
-			 ruta = VISTA_INDEX;
-		}
-		
-	
-		
-		if(intentos <= 100) {
-			request.getRequestDispatcher(ruta).forward(request, response);
-		} else {
-			response.sendRedirect("https://www.google.es/");
-		}
+                    	System.out.println("se esta logeando alquien correctamente");
+                        ruta = VISTA_INDEX;
+                    } else {
+                        System.out.println("se esta logeando alquien que no es ni admin ni user");
+                        ruta = VISTA_INICIO;
+                    }
+                } else {
+                    // aqui entra cuando no está creado
+                    intentos++;
+                    session.setAttribute("s_intentos", intentos);
+                    System.out.println("Login failed");
+                }
+                
+        
+            } else {
+                System.out.println("errors while entering fields");
+            }
+        } else {
+           
+            ruta = VISTA_INDEX; // Change the route to VISTA_INDEX
+        }
 
-	}
+        // if user attempts to log in are too many
+        if (intentos >= 100) {
+            request.getRequestDispatcher("error404.jsp").forward(request, response);
+        } else {
+            response.sendRedirect(ruta);
+        }
+    }
+
+
+
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

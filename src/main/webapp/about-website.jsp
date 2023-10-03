@@ -18,6 +18,7 @@
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="./styles/index.css">
 <link rel="stylesheet" href="./styles/styles.css">
+<link rel="stylesheet" href="./styles/aboutWebsite.css">
 <script src="https://kit.fontawesome.com/d4fe87d88c.js" crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

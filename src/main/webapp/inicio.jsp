@@ -29,7 +29,7 @@
 
 <% if(request.getAttribute("usuario_nuevo") != null){ %>
 <p class="user-created"><%=request.getAttribute("usuario_nuevo") %></p>
-<%}else if (((Integer)session.getAttribute("s_intentos")) != null) {%>
+<%}else if ((Integer)session.getAttribute("s_intentos") != null &&(Integer)session.getAttribute("s_intentos") >= 1 ) {%>
 <p class="login-failed">Login failed, please try again.</p>
 <%} %>
 
@@ -56,7 +56,7 @@
 </section>
 
 
-<p>Are you an administrator? log in here:<a href="#">YoutuShare Admin's</a><p>
+<p>Are you an administrator? Log in here:<a href="#">YoutuShare Admin's</a><p>
 
 </main>
 

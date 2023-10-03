@@ -57,6 +57,7 @@ public class Cargar extends HttpServlet implements DAO_Constantes {
        db.desconectar(con);
        
        // paso 6 mochila
+       session.setAttribute("atr_lista_canciones", todasCancionesRs);
    		request.setAttribute("atr_lista_canciones", todasCancionesRs);	
 
    		

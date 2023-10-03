@@ -17,7 +17,7 @@ header{
 	align-items: center;
 	flex-direction: column;
 	border-bottom: 3px double black;
-	height:250px;
+	height:max-content;
 	background-color: black;
 }
 

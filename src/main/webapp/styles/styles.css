@@ -10,6 +10,17 @@ body{
 
 
 
+main{
+	padding:10px;
+}
+
+
 .form-error{
 	color:red;
+}
+
+@media(min-width:768px){
+	#about-website-container{
+		background:#f0f8ff;
+	}
 }
