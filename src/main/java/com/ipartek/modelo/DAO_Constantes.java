@@ -1,13 +1,17 @@
 package com.ipartek.modelo;
+import io.github.cdimascio.dotenv.Dotenv;
 
 
 public interface DAO_Constantes {
 
+    Dotenv dotenv = Dotenv.configure().load();
 
-	String DRIVER = "com.mysql.jdbc.Driver";
-	String CONEXION = "jdbc:mysql://localhost:3306/canciones_youtube";
-	String USUARIO = "root";
-	String PASS = "";
+	
+	String DRIVER = dotenv.get("DRIVER");
+	String CONEXION = dotenv.get("CONEXION");
+	String USUARIO=dotenv.get("USUARIO");
+	String PASS=dotenv.get("PASS");
+	
 
 	
 	//vistas jsp
