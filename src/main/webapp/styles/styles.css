@@ -8,6 +8,9 @@ body{
 	justify-content: space-between;	
 }
 
+h3{
+	font-weight: 400 !important;
+}
 
 
 main{
@@ -17,6 +20,10 @@ main{
 
 .form-error{
 	color:red;
+}
+
+.form-error-light{
+	color:rgb(229, 216, 190);
 }
 
 @media(min-width:768px){

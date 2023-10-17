@@ -15,13 +15,14 @@
 
 <nav id= "footer-nav">
 
-<a  class="header-nav-element">Terms & conditions</a>
-<a  class="header-nav-element">About us </a>
+<a  class="header-nav-element" href="Inicio">Inicio</a>
+<a class="about-this-project-link" href="aboutWebsite">Sobre este proyecto</a>
+
+<!--  <a  class="header-nav-element">Sobre nosotros </a>
 <a  class="header-nav-element">Customer service</a>
+-->
 
 </nav>
-
-<em><a class="about-this-project-link" href="aboutWebsite">About this proyect/Sobre este proyecto</a></em>
 <p id="copyright"> ©2023 <a href="http://www.martinzazpe.com" target="_blank">Martin Zazpe</a>. All rights reserved. </p>
 
 

@@ -57,8 +57,6 @@ if (request.getAttribute("atr_lista_canciones") != null) {
 <main>
 
 
-
-
 <section id="section-todas-canciones">
 
 <div id="titulo-buscador">
@@ -84,7 +82,7 @@ if (request.getAttribute("atr_lista_canciones") != null) {
     <p ><%= ele.getComentario() != null ? ele.getComentario() : "" %></p>
     
     <div class="cancion-footer">
-    <a href="<%=ele.getEnlace() %>>" class="btn btn-primary">Ir al enlace</a>
+    <a href="<%=ele.getEnlace() %>>" class="btn btn-primary" target="_blank">Ir al enlace</a>
     <div>
     <a href="VistaModificarCancion?id=<%=ele.getId()%>"> ✏️</a>
     <a href="borrarCancion?id=<%=ele.getId()%>"> 🗑️️</a>   
@@ -103,6 +101,14 @@ if (request.getAttribute("atr_lista_canciones") != null) {
 <section id="section-agregar-cancion">
 
 <h3> Compartir una nueva canción</h3>
+<% if(request.getAttribute("enlace_incorrecto") != null){ %>
+<p class="form-error-light"><%=request.getAttribute("enlace_incorrecto") %></p>
+<%} %>
+
+<% if(request.getAttribute("error_crear_cancion") != null){ %>
+<p class="form-error-light"><%=request.getAttribute("error_crear_cancion") %></p>
+<%} %>
+
 <form class="form-group register-form" id="subir-cancion-form" action="AgregarCancion" method="POST">
 <label for="name">Nombre de canción</label>
 <input class="form-control" type="text" name="name"  id="name" required/>

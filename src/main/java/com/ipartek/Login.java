@@ -88,7 +88,6 @@ public class Login extends HttpServlet implements DAO_Constantes {
                     session.setAttribute("s_intentos", 0);
 
                     if (session.getAttribute("usuario_rol").equals("user") || session.getAttribute("usuario_rol").equals("admin")) {
-
                     	System.out.println("se esta logeando alquien correctamente");
                         ruta = VISTA_INDEX;
                     } else {
@@ -101,8 +100,6 @@ public class Login extends HttpServlet implements DAO_Constantes {
                     session.setAttribute("s_intentos", intentos);
                     System.out.println("Login failed");
                 }
-                
-        
             } else {
                 System.out.println("errors while entering fields");
             }
@@ -115,7 +112,7 @@ public class Login extends HttpServlet implements DAO_Constantes {
         if (intentos >= 100) {
             request.getRequestDispatcher("error404.jsp").forward(request, response);
         } else {
-            response.sendRedirect(ruta);
+            request.getRequestDispatcher(ruta).forward(request, response);
         }
     }
 

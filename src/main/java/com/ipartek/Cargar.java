@@ -21,7 +21,7 @@ import com.ipartek.modelo.dto.V_Cancion;
 
 
 @WebServlet("/Cargar")
-public class Cargar extends HttpServlet implements DAO_Constantes {
+public class Cargar extends HttpServlet implements DAO_Constantes  {
 	private static final long serialVersionUID = 1L;
        
   
@@ -66,7 +66,11 @@ public class Cargar extends HttpServlet implements DAO_Constantes {
 		}
 		//si no hay un usuario logeado en sesion no haremos nada e ira a la vista inicio	
 		// paso 7
+		
+		
+		
 		request.getRequestDispatcher(ruta).forward(request, response);
+		
 	}
 
 	

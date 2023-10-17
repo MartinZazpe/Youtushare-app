@@ -1,6 +1,7 @@
 package com.ipartek.modelo;
 
 import java.io.BufferedWriter;
+import java.io.Console;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -251,9 +252,11 @@ public class DB_Helper implements DAO_Constantes{
 	
 	
 	
-	public List<Cancion> agregarCancion(Connection con, int userId, Cancion nuevaCancion){
+	public boolean agregarCancion(Connection con, int userId, Cancion nuevaCancion){
 		
 		List<Cancion> list = new ArrayList<Cancion>();
+		
+		boolean songCreated = false;
 		
 		try {
 			CallableStatement cStmt = con.prepareCall("call sp_agregarCancion(?,?,?,?,?,?,?);");
@@ -291,11 +294,11 @@ public class DB_Helper implements DAO_Constantes{
 			
 			
 		} catch (Exception e) {
-			System.out.println("there was an error uploading the song to db");
-			return new ArrayList<Cancion>();
+			System.out.println("there was an error uploading the song to db " + e);
+			return songCreated;
 		}
 		System.out.println("song correctly uploaded: " + list);
-		return list;
+		return songCreated = true;
 	}
 	
 	
@@ -305,6 +308,7 @@ public class DB_Helper implements DAO_Constantes{
 	public String getVideoIdFromYoutubeUrl(String url){
 	    String videoId = null;
 	    String regex = "http(?:s)?:\\/\\/(?:m.)?(?:www\\.)?youtu(?:\\.be\\/|be\\.com\\/(?:watch\\?(?:feature=youtu.be\\&)?v=|v\\/|embed\\/|user\\/(?:[\\w#]+\\/)+))([^&#?\\n]+)";
+	  //  String regex = "(?<=youtu.be/|watch\\?v=|/videos/|embed\\/|youtu.be\\/|\\/v\\/|\\/e\\/|watch\\?v%3D|watch\\?feature=player_embedded&v=|%2Fvideos%2F|embed\\/|e\\/|v\\/|watch\\?v=|\\/videos\\/|youtu.be\\/|e\\/|v=|watch\\?v=|m\\/|&v=|%2Fvideos%2F|embed\\/|e\\/|youtu.be\\/|v\\/|watch\\?v=|embed\\/|youtu.be\\/|e\\/|v\\/|watch\\?v=|embed\\/|youtube.com%2Fuser%2F[\\S]+%2F|user%2F[\\S]+%2F|user\\/([a-zA-Z0-9\\-]+)|([\\S]+))";
 	    Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 	    Matcher matcher = pattern.matcher(url);
 	    if(matcher.find()){
@@ -781,6 +785,43 @@ public String borrarFavorita(Connection con, int idCancion, int idUsuario, Strin
 	return favoritaBorrada;
 }
 
+
+public boolean usernameCheck(Connection con, String username) {
+		
+	
+	 try {
+	        CallableStatement cStmt = con.prepareCall("call sp_comprobar_username(?);");
+	        cStmt.setString(1, username);
+	        
+	        // Execute the stored procedure
+	        boolean hasResults = cStmt.execute();
+	        
+	        // If there are results, process them
+	        if (hasResults) {
+	            ResultSet rs = cStmt.getResultSet();
+	            
+	            // Move to the first row of the result set
+	            if (rs.next()) {
+	                // Retrieve the boolean value from the "response" column
+	                boolean userExists = rs.getBoolean("response");
+	                
+	                // Close the result set and return the boolean value
+	                rs.close();
+	                return userExists;
+	            }
+	        }
+
+	        // If there are no results or any error occurred, return false
+	        return false;
+
+		
+
+	} catch (Exception e) {
+        System.out.println("there was an error checking if user already exists: " + e);
+		return false;
+	}
+	 
+}
 
 
 

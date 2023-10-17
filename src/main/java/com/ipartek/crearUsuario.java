@@ -97,25 +97,37 @@ public class crearUsuario extends HttpServlet implements DAO_Constantes {
 				
 			// 3 (execute method/s stored in dbhelper)
 			List<V_Cancion> todasCancionesRs = db.obtenerTodasCanciones(con);
-			String createUserRs = db.crearUsuario(con, userUsername, userPassword);
-		
-			System.out.println("user create response = " + createUserRs);
 			
-			//attempt to auto login user.
-			if(createUserRs != "") {			
-				
+			//perform a check to see if username exists before trying to create one!
 			
-					// paso 5 desconectar
-					db.desconectar(con);
+             Boolean userExists = db.usernameCheck(con, userUsername);
+             
+             if(userExists == false) {
+            	 String createUserRs = db.crearUsuario(con, userUsername, userPassword);
+         		
+     			System.out.println("user create response = " + createUserRs);
+     			
+     			//attempt to auto login user.
+     			if(createUserRs != "") {			
+     				
+     			
+     					// paso 5 desconectar
+     					db.desconectar(con);
 
-			        // paso 6 mochila
-					request.setAttribute("atr_lista_canciones", todasCancionesRs);	
-					
-					request.setAttribute("usuario_nuevo", "User created. Log in and enjoy!");
-			} 	
-			else {
-		    	request.setAttribute("usuario_nuevo", "");
-			}
+     			        // paso 6 mochila
+     					request.setAttribute("atr_lista_canciones", todasCancionesRs);	
+     					
+     					request.setAttribute("usuario_nuevo", "User created. Log in and enjoy!");
+     			} 	
+     			else {
+     		    	request.setAttribute("usuario_nuevo", "");
+     			} 
+             }
+             else {
+            	 //if a user already exists..
+ 			    ruta=VISTA_CREARUSUARIOFORMULARIO;
+			   request.setAttribute("usuario_ya_existe", "This username already exits, please choose another.");
+             }
 			} catch (Exception e) {
 				System.out.println("errors on db execution: " + e);
 			}

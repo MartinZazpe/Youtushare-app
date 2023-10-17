@@ -73,7 +73,7 @@ if (request.getAttribute("atr_cancion_modificar") != null) {
 <label for="enlace">Enlace</label>
 <input class="form-control" type="text" name="enlace" id="enlace" value="<%=cancionModificar.getEnlace() %>"/>
 <label for="comentario">Comentario</label>
-<input class="form-control" type="text" name="comentario" id="comentario" value="<%=cancionModificar.getComentario() %>" required/>
+<input class="form-control" type="text" name="comentario" id="comentario" value="<%=cancionModificar.getComentario() != null ? cancionModificar.getComentario() : "" %>" required/>
 <div id="genero-form-container">
 <label for="genero">Genero</label>
 <select name="genero" id="genero">

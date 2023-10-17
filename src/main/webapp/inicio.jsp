@@ -23,16 +23,18 @@
 
 <section id="section-login">
 
-<h3 id="welcome-message">Welcome. Please login or <a href="<%="formularioCrearUsuario"%>">register</a> to access this web</h3>
+<h3 id="welcome-message">Bienvenido. Porfavor ingresa o <a href="<%="formularioCrearUsuario"%>">registrate</a> para acceder a esta web.</h3>
 
 
 
 <% if(request.getAttribute("usuario_nuevo") != null){ %>
 <p class="user-created"><%=request.getAttribute("usuario_nuevo") %></p>
 <%}else if ((Integer)session.getAttribute("s_intentos") != null &&(Integer)session.getAttribute("s_intentos") >= 1 ) {%>
-<p class="login-failed">Login failed, please try again.</p>
+<p class="form-error">Login failed, please try again.</p>
 <%} %>
 
+
+<!-- Add a rule to show error if username exists -->
 
 <% if(session.getAttribute("usuario_rol") != null && (session.getAttribute("usuario_rol").equals("pending"))) { %>
 <p class="user-pending-approval">Your account is pending approval.</p>
@@ -55,8 +57,12 @@
 
 </section>
 
+<p>Crear <a href="formularioCrearUsuario">un usuario nuevo</a><p>
+ 
+<p>¿Eres administrador?
+ Ingresa aquí:<a href="https://martinzazpe.com/youtushare_admins/"> YoutuShare for Admin's</a><p>
 
-<p>Are you an administrator? Log in here:<a href="#">YoutuShare Admin's</a><p>
+
 
 </main>
 

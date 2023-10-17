@@ -19,9 +19,21 @@
         <location>/error500.jsp</location>
     </error-page>
     
-    <welcome-file-list>
+  
+   <welcome-file-list>
     <welcome-file>Cargar</welcome-file>
-    </welcome-file-list>
+   </welcome-file-list>
     
+   
+      <filter>
+        <filter-name>AuthenticationFilter</filter-name>
+        <filter-class>com.ipartek.AuthenticationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+  
     
 </web-app>

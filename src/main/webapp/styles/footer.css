@@ -17,6 +17,7 @@ footer{
 	width:100%;
 	display:Flex;
 	justify-content: space-around;
+	align-items: center;
 }
 
 #footer-nav a,

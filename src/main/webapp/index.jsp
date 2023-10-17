@@ -12,14 +12,7 @@ List<V_Cancion> todasCanciones = new ArrayList<V_Cancion>();
 // Debug: Check request attribute first
 if (request.getAttribute("atr_lista_canciones") != null) {
     todasCanciones = (List<V_Cancion>) request.getAttribute("atr_lista_canciones");
-    out.println("Debug: Songs found in request attribute: " + todasCanciones.size());
-} else {
-    // Debug: Check session attribute
-    if (session.getAttribute("atr_lista_canciones") != null) {
-        todasCanciones = (List<V_Cancion>) session.getAttribute("atr_lista_canciones");
-        out.println("Debug: Songs found in session attribute: " + todasCanciones.size());
-    }
-}
+} 
 %>
 
   <% List<V_favoritas> todasCancionesFavs = new ArrayList<V_favoritas>();

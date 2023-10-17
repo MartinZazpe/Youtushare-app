@@ -80,6 +80,8 @@ header{
 
 #search-canciones-form div input{
 	  padding: 5px 30px 5px 10px;
+	  width:600px;
+	  max-width:80vw;
 }
 
 #search-canciones-form div button{

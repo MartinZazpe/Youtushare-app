@@ -38,8 +38,10 @@ main{
 }
 
 #section-agregar-cancion{
+	margin-top:10px;
 	width:100%;
 	padding:50px;
+	background:cadetblue;
 }
 
 #section-buscar-canciones-usuario{
@@ -53,6 +55,8 @@ main{
 	width:100%;
  	display:grid;
 	grid-template-columns: repeat(auto-fill, minmax(150px, max-content));
+grid-row-gap: 10px;
+grid-column-gap: 10px;
 }
 
 #titulo-buscador{
@@ -65,7 +69,6 @@ main{
 }
 
 .cancion-contenedor{
-	border:1px solid cyan;
 	border-radius: 6px;
 	display:flex;
 	flex-flow: column;
@@ -101,15 +104,18 @@ display: block;
 	
 	main{
 	flex-flow: row;
+	justify-content: space-evenly;
+	align-items: flex-start;
 }
+
 
 	
 	#section-todas-canciones{
-	width:55%;
+	width:auto;
 }
 
 #section-agregar-cancion{
-	width:35%;
+	width:auto;
 	padding:50px;
 }
 }

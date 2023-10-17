@@ -13,4 +13,10 @@
 .cancion-contenedor{
 	max-width:600px;
 	width:500px;
+	background:cadetblue;
+}
+
+
+.form-group{
+		padding:20px !important;
 }

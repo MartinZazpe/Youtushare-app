@@ -28,10 +28,9 @@
 
 
 <main>
-
 <section id="section-login">
 
-<h3 id="welcome-message">Welcome. Create a user and join our family.</h3>
+<h3 id="welcome-message">Bienvenido. Crea un usuario y comienza a disfrutar.</h3>
 <p>Return to <a href="Inicio">login</a></p>
 
 
@@ -50,6 +49,9 @@
 <%} %>
 
 
+<%if(request.getAttribute("usuario_ya_existe")!= null){ %>
+<p class="form-error"><%=request.getAttribute("usuario_ya_existe") %></p>
+<%} %>
 
 
 <form class="form-group register-form" id="login-form" action="crearUsuario" method="POST">

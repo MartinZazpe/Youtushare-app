@@ -42,17 +42,6 @@ if (request.getAttribute("atr_lista_canciones") != null) {
 
 <main>
 
-<section id="user-details-section">
-<div id="user-details">
-<p>Bienvenido, </p>
-&nbsp
-<%= session.getAttribute("usuario_name") %>
-<%if(session.getAttribute("usuario_rol").equals("admin")){ %>
-🔑
-<%} %>
-</div>
-</section>
-
 
 <section id="section-todas-canciones">
 
@@ -79,8 +68,8 @@ if (request.getAttribute("atr_lista_canciones") != null) {
     
     <div class="cancion-footer">
     <a href="<%=ele.getEnlace() %>>" class="btn btn-primary">Ir al enlace</a>
-    <a href="Edit"> ✏️</a>
-    <a href="Delete"> 🗑️️</a>
+    <a href="VistaModificarCancion?id=<%=ele.getId()%>"> ✏️</a>
+    <a href="borrarCancion?id=<%=ele.getId()%>"> 🗑️️</a>   
     </div>
   </div>
 </div>
