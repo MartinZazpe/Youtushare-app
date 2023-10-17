@@ -40,8 +40,6 @@ public class formularioCrearUsuario extends HttpServlet implements DAO_Constante
 		
 			System.out.println("el usuario en session " + session.getAttribute("usuario_name"));;
 			
-		
-			
    	  ruta = VISTA_CREARUSUARIOFORMULARIO;
 		}
 		//si no hay un usuario logeado en sesion no haremos nada e ira a la vista inicio	

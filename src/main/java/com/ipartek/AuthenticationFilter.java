@@ -15,51 +15,30 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter("/*")
 public class AuthenticationFilter implements Filter {
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-            throws IOException, ServletException {
-        HttpServletRequest httpRequest = (HttpServletRequest) request;
-        HttpServletResponse httpResponse = (HttpServletResponse) response;
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+	        throws IOException, ServletException {
 
-        HttpSession session = httpRequest.getSession(false);
+	    HttpServletRequest httpRequest = (HttpServletRequest) request;
+	    HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        boolean isLoggedIn = (session != null && session.getAttribute("usuario_name") != null);
+	    HttpSession session = httpRequest.getSession(false);
+	    String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
-        
-        System.out.println("metodo filter, el usuario en sesion: " + isLoggedIn);
-        
-        if (isLoggedIn || isPublicPath(httpRequest)) {
-            // If logged in or accessing a public path, allow the request to proceed
-            chain.doFilter(request, response);
-        } else {
-            // If not logged in and not accessing a public path, redirect to login
-            httpResponse.sendRedirect("/canciones_youtube/Inicio");
-        }
+	    if (session == null || session.getAttribute("usuario_name") == null) {
+	        // User not logged in, allow access to public paths handled in servlets
+	        chain.doFilter(request, response);
+	    } else if (cantAccessLoggedUserPath(path)) {
+	        // User logged in but trying to access restricted path, redirect to /Inicio
+	        httpResponse.sendRedirect("/canciones_youtube/Inicio");
+	    } else {
+	        // User logged in and allowed path, proceed
+	        chain.doFilter(request, response);
+	    }
+	}
 
-        System.out.println("Filter chain completed.");
-    }
-    
-    
-    
-    private boolean isPublicPath(HttpServletRequest httpRequest) {
-        String contextPath = httpRequest.getContextPath();
-        String path = httpRequest.getRequestURI().substring(contextPath.length());
-
-        // Exclude paths for static resources
-        if (path.startsWith("/styles/") || path.startsWith("/images/") || path.startsWith("/scripts/")) {
-            return true;
-        }
-
-        // Check if path is "/" or empty
-        if ("/".equals(path) || path.isEmpty()) {
-            return true;
-        }
-
-        return "/Inicio".equals(path) || 
-               "/formularioCrearUsuario".equals(path) || 
-               "/aboutWebsite".equals(path) ||
-               "/crearUsuario".equals(path) ||
-               "/Login".equals(path);  // Add your login page path here
-    }
+	private boolean cantAccessLoggedUserPath(String path) {
+	    return path.equals("/formularioCrearUsuario") || path.equals("/crearUsuario") || path.equals("/Login");
+	}
 
 
 
