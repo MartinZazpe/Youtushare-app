@@ -1,6 +1,6 @@
 
  # *.env 
-src/web-inf/classes/.env
+src/WEB-INF/classes/.env
 
 
 config.properties
