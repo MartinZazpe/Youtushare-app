@@ -1,8 +1,5 @@
-
- # *.env 
-src/WEB-INF/classes/.env
-
-
+.env
+src/main/webapp/WEB-INF/classes/*.env
 config.properties
 .classpath
 .project
