@@ -91,7 +91,7 @@ if (request.getAttribute("cancion_agregada_fav") != null) {
 <div  class="cancion-contenedor">
 
 <div class="star-container">
-       <a href="AgregarFavoritos?idCancion=<%=ele.getId()%>"> <i class="fa-regular fa-star fa-xl favoriteElement"></i>  </a>     
+       <a href="AgregarFavoritos?idCancion=<%=ele.getId()%>">  <i class="fa-solid fa-star fa-xl favoriteElement" style="color: #fff700;"></i> </a>     
     </div>
   
     

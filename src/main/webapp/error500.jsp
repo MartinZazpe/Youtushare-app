@@ -10,13 +10,16 @@
         
 </head>
 <body>
+<%@include file="includes/cabeceraError.jsp" %>
+
+
       <div>
 <image src="https://images.squarespace-cdn.com/content/v1/61583236df8ffd37e403bb6c/303b8f57-3e45-4216-8e1c-6858ec8cc93c/cat_img_1628319058149.png">
 <div id="info-container">
     <h1>500 - Internal Server Error</h1>
- 
-    <p>An internal server error occurred.</p>
-    <a href="Inicio">back to main page</a>
+
+     <p>Un error interno a ocurrido.</p> 
+     <a href="Inicio">Volver a la página de inicio</a>
 </div>
 
 </div>

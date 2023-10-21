@@ -56,7 +56,7 @@ if (request.getAttribute("atr_lista_canciones_favs") != null) {
 
 
 <div class="star-container">
-       <a href="AgregarFavoritos?idCancion=<%=ele.getId()%>"> <i class="fa-regular fa-star fa-xl favoriteElement"></i>  </a> 
+       <a href="AgregarFavoritos?idCancion=<%=ele.getId()%>"> <i class="fa-solid fa-star fa-xl favoriteElement" style="color: #fff700;"></i>  </a> 
     </div>
 
   <img src="http://img.youtube.com/vi/<%=ele.getEnlaceId() %>/hqdefault.jpg" class="card-img-top" alt="...">

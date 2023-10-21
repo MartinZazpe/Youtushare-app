@@ -101,9 +101,13 @@ public class crearUsuario extends HttpServlet implements DAO_Constantes {
 			//perform a check to see if username exists before trying to create one!
 			
              Boolean userExists = db.usernameCheck(con, userUsername);
+           
              
              if(userExists == false) {
+            	 
+            	
             	 String createUserRs = db.crearUsuario(con, userUsername, userPassword);
+            	 
          		
      			System.out.println("user create response = " + createUserRs);
      			
@@ -112,7 +116,7 @@ public class crearUsuario extends HttpServlet implements DAO_Constantes {
      				
      			
      					// paso 5 desconectar
-     					db.desconectar(con);
+     					 //db.desconectar(con);
 
      			        // paso 6 mochila
      					request.setAttribute("atr_lista_canciones", todasCancionesRs);	
@@ -128,6 +132,9 @@ public class crearUsuario extends HttpServlet implements DAO_Constantes {
  			    ruta=VISTA_CREARUSUARIOFORMULARIO;
 			   request.setAttribute("usuario_ya_existe", "This username already exits, please choose another.");
              }
+				// paso 5 desconectar
+				db.desconectar(con);
+            
 			} catch (Exception e) {
 				System.out.println("errors on db execution: " + e);
 			}

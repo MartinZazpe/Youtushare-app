@@ -26,33 +26,26 @@ import com.ipartek.modelo.dto.V_Usuario;
 import com.ipartek.modelo.dto.V_favoritas;
 import com.google.gson.Gson;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 
 
 
 public class DB_Helper implements DAO_Constantes{
 	
-	
-	
-	
+		
 	public Connection conectar() {
 		
-		
-		Properties prop = new Properties();
-		InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+		Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
-		try {
-		    prop.load(input);
-		} catch (IOException e) {
-		    e.printStackTrace(); // Handle the exception in an appropriate way (logging, throwing a custom exception, etc.)
-		}
-
-		String USER = prop.getProperty("db.username");
-		String PASSWORD = prop.getProperty("db.password");	
-		String CONNECTI = prop.getProperty("db.connection");
-		String DRIVR = prop.getProperty("db.driver");
+	
+		String USER = dotenv.get("db.username");
+		String PASSWORD = dotenv.get("db.password");	
+		String CONNECTI = dotenv.get("db.connection");
+		String DRIVR = dotenv.get("db.driver");
 		
 		Connection con = null;
-
+		
 		try {
 			Class.forName(DRIVR);
 			con = DriverManager.getConnection(CONNECTI, USER, PASSWORD);

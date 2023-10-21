@@ -71,6 +71,10 @@ header{
 	height:140px;
 		padding-top:10px ; 
 		width:100%;
+		display:Flex;
+		flex-flow: column;
+		align-items: center;
+		justify-content: space-between;
 }
 
 

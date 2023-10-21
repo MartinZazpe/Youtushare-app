@@ -41,11 +41,14 @@ public class Login extends HttpServlet implements DAO_Constantes {
         String userPassword = request.getParameter("password");
 
        
+        System.out.println("the user name and pass login in " + userUsername + "  " + userPassword);
+
         
         
         HttpSession session = request.getSession();
         
         
+       
 
         // intentos de login
         int intentos = session.getAttribute("s_intentos") != null ? (int) session.getAttribute("s_intentos") : 0;
@@ -60,11 +63,16 @@ public class Login extends HttpServlet implements DAO_Constantes {
                 DB_Helper db = new DB_Helper();
                 Connection con = db.conectar();
 
-                // 3 (execute method/s stored in dbhelper)
-                List<V_Usuario> loginRs = db.checkLogin(con, userUsername, userPassword);
-                List<V_Cancion> todasCancionesRs = db.obtenerTodasCanciones(con);
                 
                 
+                try {
+                    // 3 (execute method/s stored in dbhelper)
+                    List<V_Usuario> loginRs = db.checkLogin(con, userUsername, userPassword);
+                    List<V_Cancion> todasCancionesRs = db.obtenerTodasCanciones(con);
+                
+                 
+           
+           
                 // paso 5 desconectar
                 db.desconectar(con);
                 
@@ -100,10 +108,23 @@ public class Login extends HttpServlet implements DAO_Constantes {
                     session.setAttribute("s_intentos", intentos);
                     System.out.println("Login failed");
                 }
-            } else {
-                System.out.println("errors while entering fields");
+            }       
+            catch(Error err) {
+                System.out.println("Error: "+err);
             }
-        } else {
+            }
+                
+                
+                
+                else {
+                System.out.println("errors while entering fields");
+            }   
+            
+          
+            
+           
+        
+            } else {
            
             ruta = VISTA_INDEX; // Change the route to VISTA_INDEX
         }

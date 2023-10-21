@@ -40,7 +40,7 @@
 
 <p>Aspectos destacados:</p>
 <ul>
-<li><a href="#">Panel administrativo</a> en un sitio web separado.</li>
+<li><a href="https://martinzazpe.com/youtushare_admins/">Panel administrativo</a> en un sitio web separado.</li>
 <li>Almacenamiento de datos en MySQL.</li>
 <li>Funcionalidad de inicio de sesión y persistencia en la sesión.</li>
 

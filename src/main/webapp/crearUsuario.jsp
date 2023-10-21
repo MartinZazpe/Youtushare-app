@@ -31,7 +31,7 @@
 <section id="section-login">
 
 <h3 id="welcome-message">Bienvenido. Crea un usuario y comienza a disfrutar.</h3>
-<p>Return to <a href="Inicio">login</a></p>
+<p>Volver al <a href="Inicio">login</a></p>
 
 
 

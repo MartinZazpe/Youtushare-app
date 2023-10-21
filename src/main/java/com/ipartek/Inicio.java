@@ -35,23 +35,32 @@ public class Inicio extends HttpServlet implements DAO_Constantes{
         String ruta = VISTA_INDEX;
 
         HttpSession session = request.getSession();
+        
+
+
 
         // si ya hay un usuario logeado y guardado en sesion:
         if (session.getAttribute("usuario_name") != null) {
 
+        	
+        
             // ejecutar lo necesario para poder enviar en la mochila
-            // 3 connect to database
-            DB_Helper db = new DB_Helper();
-            Connection con = db.conectar();
+            
 
             // Check that the user in session still exists in db.
             if ((Integer) session.getAttribute("usuario_id") != null) {
+            	
+            	
+            	   // 3 connect to database
+                DB_Helper db = new DB_Helper();
+                Connection con = db.conectar();
+            	
                 Usuario buscarUsuarioPorId = db.buscarUsuarioPorId(con, (Integer) session.getAttribute("usuario_id"));
 
                 if ((Integer) session.getAttribute("usuario_id") == (buscarUsuarioPorId.getId())) {
 
                     int userId = (Integer) session.getAttribute("usuario_id");
-
+                   
                     // 3 (execute method/s stored in dbhelper)
                     List<V_Cancion> todasCancionesRs = db.obtenerTodasCanciones(con);
                     List<V_favoritas> todasCancionesFavsRs = db.obtenerFavoritasCanciones(con, userId);
@@ -64,7 +73,8 @@ public class Inicio extends HttpServlet implements DAO_Constantes{
                     request.setAttribute("atr_lista_canciones_favs", todasCancionesFavsRs);
                     ruta = VISTA_INDEX;
 
-                } else {
+                } 
+                else {
                     // si el usuario en session ya no existe en la db:
                     session.removeAttribute("usuario_id");
                     session.removeAttribute("usuario_name");
@@ -74,6 +84,7 @@ public class Inicio extends HttpServlet implements DAO_Constantes{
                 System.out.println("Could not find an attribute for id on session. ");
             }
         } else {
+        	//user not logged in;
             ruta = VISTA_INICIO; // Change this to VISTA_INICIO
         }
 

@@ -18,9 +18,9 @@
 
 
 <% if(session.getAttribute("usuario_name") != null) {%>
-<a class="header-nav-element" href="Inicio">Ver mas recientes</a>
+<a class="header-nav-element" href="Inicio">Recientes</a>
 <a class="header-nav-element" href="VerTodo">Ver todas</a>
-<a class="header-nav-element" href="obtenerFavoritos">Mis favoritas</a>
+<a class="header-nav-element" href="obtenerFavoritos">Favoritas</a>
 <a class="header-nav-element" href="VerCancionesUsuario">Mis canciones</a>
 <%}%>
 </nav>

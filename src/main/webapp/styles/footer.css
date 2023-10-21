@@ -18,6 +18,7 @@ footer{
 	display:Flex;
 	justify-content: space-around;
 	align-items: center;
+	flex-flow: column;
 }
 
 #footer-nav a,

@@ -25,8 +25,13 @@ public class AuthenticationFilter implements Filter {
 	    String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
 	    if (session == null || session.getAttribute("usuario_name") == null) {
-	        // User not logged in, allow access to public paths handled in servlets
-	        chain.doFilter(request, response);
+	    	   // User not logged in, redirect to /Inicio if accessing the root path
+	        if (path.equals("/") || path.equals("")) {
+	            httpResponse.sendRedirect("/canciones_youtube/Inicio");
+	        } else {
+	            // User not logged in, allow access to public paths handled in servlets
+	            chain.doFilter(request, response);
+	        }
 	    } else if (cantAccessLoggedUserPath(path)) {
 	        // User logged in but trying to access restricted path, redirect to /Inicio
 	        httpResponse.sendRedirect("/canciones_youtube/Inicio");
@@ -37,7 +42,7 @@ public class AuthenticationFilter implements Filter {
 	}
 
 	private boolean cantAccessLoggedUserPath(String path) {
-	    return path.equals("/formularioCrearUsuario") || path.equals("/crearUsuario") || path.equals("/Login");
+	    return path.equals("/formularioCrearUsuario") || path.equals("/crearUsuario") || path.equals("/Login") || path.equals("/");
 	}
 
 
